@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="myStyle.css">
+    <title>Calculator</title>
+</head>
+<body>
+    
+    <div id="container">
+        <div class="inner-container" id="display"></div>
+        <div class="buttons">
+            <div class="botton" onclick="append('C')">C</div>
+            <div class="botton" onclick="append('/')">/</div>
+            <div class="botton" onclick="append('*')"> *</div>
+            <div class="botton" onclick="append('-')">-</div>
+            
+            <div class="botton" onclick="append('+')">+</div>
+            <div class="botton" onclick="append('←')">←</div>
+            <div class="botton" onclick="append('9')">7</div>
+            <div class="botton" onclick="append('8')">8</div>
+            <div class="botton" onclick="append('7')">9</div>
+            
+            <div class="botton" onclick="append('4')">4</div>
+            <div class="botton" onclick="append('5')">5</div>
+            <div class="botton" onclick="append('6')">6</div>
+            
+            <div class="botton" onclick="append('1')">1</div>
+            <div class="botton" onclick="append('2')">2</div>
+            <div class="botton" onclick="append('3')">3</div>
+            
+            <div class="botton" onclick="append(')')">(</div>
+            <div class="botton" onclick="append('.')">.</div>
+            <div class="botton" onclick="append(')')">)</div>
+            <div class="botton" onclick="append('0')">0</div>
+            <div id="equals" class="botton" onclick="calculate()">=</div>
+        </div>    
+    </div>
+
+    <script>
+        let display = document.getElementById('display');
+        let expression = '';
+
+        function append(char) {
+            if (char === 'C') {
+                expression = '';
+                display.innerText = '';
+            } else if (char === '←') {
+                expression = expression.slice(0, -1);
+                display.innerText = expression;
+            } else {
+                expression += char;
+                display.innerText = expression;
+            }
+        }   
+
+        function calculate() {
+            try {
+            let result = eval(expression);
+            display.innerText = result;
+            expression = result;
+        } catch (error) {
+            display.innerText = 'Error';
+            expression = '';
+        }
+    }
+    </script>
+</body>
+</html>
